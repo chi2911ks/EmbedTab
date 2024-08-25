@@ -8,6 +8,9 @@ from utils.find_handle import find_handle
 
 ```
 ### LDPlayer
++ Demo
+![image](https://github.com/user-attachments/assets/67cb3dba-e3f5-471c-80df-7b4f43773639)
+
 + Create new view
 ```python
 embed = EmbedAPI()
