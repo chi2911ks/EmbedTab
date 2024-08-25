@@ -33,4 +33,4 @@ class Ui_FormView(object):
 
     def retranslateUi(self, FormView):
         _translate = QtCore.QCoreApplication.translate
-        FormView.setWindowTitle(_translate("FormView", "View Chrome"))
+        FormView.setWindowTitle(_translate("FormView", "View"))
