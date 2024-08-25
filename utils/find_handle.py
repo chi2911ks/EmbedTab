@@ -13,7 +13,7 @@ def enum_windows_callback(hwnd, windows):
 def find_handle(title_window="Chrome"):
     handles = []
     win32gui.EnumWindows(enum_windows_callback, handles)
-    handles = [str(hwnd)+":"+title for hwnd, title in handles if title_window in title]
+    handles = [title+":"+str(hwnd) for hwnd, title in handles if title_window in title]
     return handles
 def get_pid_from_handle(hwnd):
     _, pid = win32process.GetWindowThreadProcessId(hwnd)

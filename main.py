@@ -54,19 +54,22 @@ class MainEmbed(QWidget, QObject):
             
         
     def embed(self):
-        handle = request.args.get('handle', '????? wtf')
-        new = request.args.get('new', True)
-        index = request.args.get('index', "")
-        if handle == "":
-            return jsonify({"status": False, "msg": "wtf handle?"})
+        
+        def is_it_true(value):
+            return value.lower() == 'true'
         try:
+            handle = request.args.get('handle', '????? wtf')
+            new = request.args.get('new', default=False, type=is_it_true)
+            index = request.args.get('index', '')
+            if handle == "":
+                return jsonify({"status": False, "msg": "wtf handle?"})
             if is_window(int(handle)):
                 if not new:
+                    if index == "": 
+                        print("Please enter index!")
+                        return jsonify({"status": False, "msg": "Please enter index!"})
                     index = int(index)
-                    if index > self.index_view-1:
-                        print("The entered index is greater than the current index!")
-                        return jsonify({"status": False, "msg": "The entered index is greater than the current index!"})
-                    elif index not in self.widget:
+                    if index not in self.widget:
                         print("No indexes have been created for this tab!")
                         return jsonify({"status": False, "msg": "No indexes have been created for this tab!"})
                 else:

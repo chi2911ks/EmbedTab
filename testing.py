@@ -1,9 +1,7 @@
+from EmbedAPI.embed import EmbedAPI
 from utils.find_handle import find_handle
-
-
-index = 0
-for i in find_handle(""):
-    import requests
-    if "ẩn" in i:
-        print(requests.get("http://127.0.0.1:5000/embed?handle="+i.split(":")[0]).json())
-        index += 1
+embed = EmbedAPI()
+for index, data in enumerate(find_handle("LDPlayer")):
+    title, handle = data.split(":")
+    if "LDPlayer" in title:
+       embed.embed_tab(handle, new=True)
