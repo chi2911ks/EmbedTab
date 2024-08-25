@@ -7,7 +7,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from GUI.embed_chrome_ui import Ui_FormView
+from GUI.embed_tab_ui import Ui_FormView
 from flask import Flask, request, jsonify
 from utils.find_handle import is_window
 
@@ -23,14 +23,15 @@ class MainEmbed(QWidget, QObject):
         self.widget: typing.Dict[int, QWidget] = {}
         self.index_view = 0
         threading.Thread(target=app.run, args=('127.0.0.1', 5000, ), daemon=True).start()
-        
     @pyqtSlot()
     def __create_view(self):
         global ROW_VIEW, COL_VIEW
         self.widget[self.index_view] = QWidget(self.ui.scrollAreaWidgetContents)
-        self.widget[self.index_view].setStyleSheet("background-color: yellow;")
-        self.widget[self.index_view].setMaximumSize(int(1500/NUMBER_COL), 500)
-        self.widget[self.index_view].setMinimumSize(int(1500/NUMBER_COL), 500)
+        self.widget[self.index_view].setStyleSheet("background-color: gray;")
+        self.widget[self.index_view].setMaximumHeight(500)
+        self.widget[self.index_view].setMinimumHeight(500)
+
+        
         self.widget[self.index_view].setLayout(QHBoxLayout())
         if COL_VIEW == NUMBER_COL:
             ROW_VIEW += 1
@@ -61,7 +62,6 @@ class MainEmbed(QWidget, QObject):
             return jsonify({"status": False, "msg": "wtf handle?"})
         # try:
         if is_window(int(handle)):
-            
             if index == "":
                 index = QMetaObject.invokeMethod(self, "__create_view", Qt.QueuedConnection)
                 sleep(1)
