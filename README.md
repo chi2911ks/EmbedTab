@@ -29,7 +29,7 @@ embed.embed_tab(handle, index=0)
 ### Chrome
 + Demo
 ![image](https://github.com/user-attachments/assets/2355db37-a358-4e1c-9457-225b92594347)
-
++ Code
 ```python
 from time import sleep
 from undetected_chromedriver import Chrome
