@@ -21,7 +21,7 @@ for data in find_handle("LDPlayer"):
 or
 ```python
 import win32gui
-hwnd = win32gui.FindWindow(None, "LDPlayer")
+handle = win32gui.FindWindow(None, "LDPlayer")
 embed = EmbedAPI()
 embed.embed_tab(handle, new=True)
 ```
