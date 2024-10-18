@@ -12,5 +12,11 @@ class EmbedAPI:
         path = "/embed"
         url = self.domain+path
         response = requests.get(url, params=params)
-        print(response.url)
-        print(response.json())
+    
+
+    def unembed_tab(self, handle):
+        params = {"handle": handle}
+        path = "/unembed"
+        url = self.domain+path
+        response = requests.get(url, params=params)
+        print(response.text)
