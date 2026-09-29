@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "embed-tab"
+version = "1.0.0"
+description = "Embed Windows application windows into a PyQt5 grid"
+requires-python = ">=3.9"
+dependencies = [
+    "Flask>=3.0",
+    "PyQt5>=5.15.10",
+    "requests>=2.31",
+    "pywin32>=306",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
